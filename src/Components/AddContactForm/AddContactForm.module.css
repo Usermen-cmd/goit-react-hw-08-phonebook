@@ -1,0 +1,32 @@
+.header {
+  composes: header from 'composesStyles/composes.css';
+}
+.form {
+  padding: 20px 0;
+  text-align: center;
+}
+.input {
+  composes: input from 'composesStyles/composes.css';
+}
+.input::placeholder {
+  color: var(--accentBlue);
+}
+.input:focus {
+  outline: none;
+  box-shadow: 0px 0px 1px 1px var(--hoverBlue);
+  border: 1px solid var(--hoverBlue);
+}
+.button {
+  composes: button from 'composesStyles/composes.css';
+  width: 45px;
+}
+.button:hover {
+  background-color: var(--hoverBlue);
+  box-shadow: var(--shadowBtn);
+  cursor: pointer;
+}
+.label {
+  margin-right: 10px;
+  font-weight: 500;
+  color: var(--secondary);
+}
