@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getName } from 'redux/selectors';
 
 export const HomePage = () => {
+  const name = useSelector(getName);
   return (
     <div
       style={{
@@ -21,14 +24,14 @@ export const HomePage = () => {
         Книга контактов
       </h1>
       <NavLink
-        to="/login"
+        to={name ? '/contacts' : '/login'}
         style={{
           display: 'block',
           color: '#fff',
           textAlign: 'center',
         }}
       >
-        Войти
+        {name ? 'перейти к контактам' : 'войти'}
       </NavLink>
     </div>
   );

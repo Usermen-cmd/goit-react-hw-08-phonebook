@@ -4,6 +4,7 @@ import { HomePage } from 'Components/HomePage/HomePage';
 import { LoginPage } from 'Components/LoginPage/LoginPage';
 import { SignupPage } from 'Components/SignupPage/SignupPage';
 import { UserBar } from 'Components/UserBar/UserBar';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
 
         <Redirect to="/" />
       </Switch>
+      <Toaster position="top-right" />
     </>
   );
 };

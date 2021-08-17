@@ -3,9 +3,10 @@ import css from './FindForm.module.css';
 //Utils
 import { changeFilter } from 'redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
+import { getFilterValue } from 'redux/selectors';
 
 const FindForm = () => {
-  const value = useSelector(s => s.filter);
+  const value = useSelector(getFilterValue);
   const dispatch = useDispatch();
 
   function onChange(event) {

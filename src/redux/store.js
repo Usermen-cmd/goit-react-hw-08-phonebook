@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { contactApi } from 'redux/contactApiServise';
 import { authApi } from './authServise';
-import { filter, token } from 'redux/redusers';
+import { filter, authData } from 'redux/redusers';
 import { combineReducers } from '@reduxjs/toolkit';
 import {
   persistStore,
@@ -16,14 +16,14 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 const authPersistConfig = {
-  key: 'auth',
+  key: 'authData',
   storage,
-  whitelist: ['token'],
+  whitelist: ['authData'],
 };
 
 const rootReducer = combineReducers({
   filter,
-  token,
+  authData,
   [contactApi.reducerPath]: contactApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
 });

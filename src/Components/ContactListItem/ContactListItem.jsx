@@ -5,25 +5,24 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { GoTrashcan } from 'react-icons/go';
 import Loader from 'react-loader-spinner';
 //Utils
-import { useEffect } from 'react';
 import { useDeleteContactMutation } from 'redux/contactApiServise';
 import toast from 'react-hot-toast';
 import PropTypes from 'prop-types';
 
 export const ContactListItem = ({ contact }) => {
-  const [deleteContact, { isLoading, error }] = useDeleteContactMutation();
+  const [deleteContact, { isLoading }] = useDeleteContactMutation();
 
   const hangleContactDelete = id => () => {
-    toast.success('Удалено', {
-      icon: GoTrashcan({ color: 'rgb(245, 210, 13)', size: '20' }),
-    });
-    return deleteContact(id);
+    return deleteContact(id)
+      .then(
+        toast.success('Удалено', {
+          icon: GoTrashcan({ color: 'rgb(245, 210, 13)', size: '20' }),
+        }),
+      )
+      .catch(error =>
+        toast.error(`Возникла ошибка ${error.status}, сообщение ${error.data}`),
+      );
   };
-
-  useEffect(() => {
-    error &&
-      toast.error(`Возникла ошибка ${error.status}, сообщение ${error.data}`);
-  }, [error]);
 
   return (
     <li className={css.listItem}>
@@ -38,9 +37,10 @@ export const ContactListItem = ({ contact }) => {
         {isLoading ? (
           <Loader type="TailSpin" color="#fff" height={12} width={12} />
         ) : (
-          'delete'
+          <>
+            delete <GoTrashcan size="16" />
+          </>
         )}
-        {!isLoading && <GoTrashcan size="16" />}
       </button>
     </li>
   );
