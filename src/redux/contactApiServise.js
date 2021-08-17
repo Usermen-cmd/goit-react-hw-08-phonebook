@@ -1,6 +1,4 @@
-import { combineReducers } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { filter } from 'redux/redusers';
 
 export const contactApi = createApi({
   reducerPath: 'contactApi',
@@ -41,8 +39,3 @@ export const {
   useDeleteContactMutation,
   useAddContactMutation,
 } = contactApi;
-
-export const rootReducer = combineReducers({
-  filter,
-  [contactApi.reducerPath]: contactApi.reducer,
-});

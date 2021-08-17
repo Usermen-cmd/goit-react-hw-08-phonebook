@@ -1,12 +1,47 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from 'redux/contactApiServise';
 import { contactApi } from 'redux/contactApiServise';
+import { authApi } from './authServise';
+import { filter, token } from 'redux/redusers';
+import { combineReducers } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-const store = configureStore({
-  reducer: rootReducer,
-  devTools: process.env.NODE_ENV === 'development',
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(contactApi.middleware),
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
+const rootReducer = combineReducers({
+  filter,
+  token,
+  [contactApi.reducerPath]: contactApi.reducer,
+  [authApi.reducerPath]: authApi.reducer,
 });
 
-export { store };
+const persistedReducer = persistReducer(authPersistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  devTools: process.env.NODE_ENV === 'development',
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    })
+      .concat(contactApi.middleware)
+      .concat(authApi.middleware),
+});
+
+const persistor = persistStore(store);
+export { store, persistor };
