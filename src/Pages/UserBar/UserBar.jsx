@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAuthData } from 'redux/actions';
 import { getName } from 'redux/selectors';
 import { toast } from 'react-hot-toast';
+import css from './UserBar.module.css';
 
 export const UserBar = () => {
   const history = useHistory();
@@ -24,46 +25,38 @@ export const UserBar = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', alignItems: 'center', padding: '10px 0' }}>
+      <div className={css.bar}>
         {!name && (
           <>
-            <NavLink to="/signup" style={{ marginRight: '30px' }}>
+            <NavLink to="/signup" className={css.link}>
               Signup
             </NavLink>
-            <NavLink to="/login" style={{ marginRight: '30px' }}>
+            <NavLink to="/login" className={css.link}>
               Login
             </NavLink>
           </>
         )}
-        <NavLink to="/" style={{ marginRight: '30px' }}>
+        <NavLink to="/" className={css.link}>
           Home
         </NavLink>
         {name && (
-          <NavLink to="/contacts" style={{ marginRight: '30px' }}>
+          <NavLink to="/contacts" className={css.link}>
             Contacts
           </NavLink>
         )}
         {name && (
           <>
-            <p
-              style={{
-                margin: '0',
-                marginLeft: 'auto',
-              }}
-            >
-              Hello, {name}
-            </p>
+            <p className={css.userName}>Hello, {name}</p>
             <button
               type="button"
               onClick={logoutHandler}
-              style={{ marginLeft: '30px', display: 'block', height: '18px' }}
+              className={css.button}
             >
-              logout
+              Logout
             </button>
           </>
         )}
       </div>
-      <hr />
     </>
   );
 };

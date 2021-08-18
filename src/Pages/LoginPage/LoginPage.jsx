@@ -6,6 +6,7 @@ import { FormItems } from 'Components/FormItems/FormItems';
 import { toast } from 'react-hot-toast';
 import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
 import { loginSchema } from 'utils/validtionSchema';
+import css from './LoginPage.module.css';
 
 const formikOptions = [
   {
@@ -37,13 +38,15 @@ export const LoginPage = () => {
   }
 
   return (
-    <FormItems
-      schema={loginSchema}
-      onSubmit={loginHandler}
-      initValues={{ email: '', password: '' }}
-      inputTags={formikOptions}
-    >
-      <SubmitButton isLoading={isLoading} label={'Login'} />
-    </FormItems>
+    <div className={css.container}>
+      <FormItems
+        schema={loginSchema}
+        onSubmit={loginHandler}
+        initValues={{ email: '', password: '' }}
+        inputTags={formikOptions}
+      >
+        <SubmitButton isLoading={isLoading} label={'Login'} />
+      </FormItems>
+    </div>
   );
 };

@@ -6,6 +6,7 @@ import { FormItems } from 'Components/FormItems/FormItems';
 import { useHistory } from 'react-router-dom';
 import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
 import { signupSchema } from 'utils/validtionSchema';
+import css from './SignupPage.module.css';
 
 const formikOptions = [
   {
@@ -43,13 +44,15 @@ export const SignupPage = () => {
   }
 
   return (
-    <FormItems
-      schema={signupSchema}
-      onSubmit={submitHandler}
-      initValues={{ name: '', email: '', password: '' }}
-      inputTags={formikOptions}
-    >
-      <SubmitButton isLoading={isLoading} label={'Signup'} />
-    </FormItems>
+    <div className={css.container}>
+      <FormItems
+        schema={signupSchema}
+        onSubmit={submitHandler}
+        initValues={{ name: '', email: '', password: '' }}
+        inputTags={formikOptions}
+      >
+        <SubmitButton isLoading={isLoading} label={'Signup'} />
+      </FormItems>
+    </div>
   );
 };
