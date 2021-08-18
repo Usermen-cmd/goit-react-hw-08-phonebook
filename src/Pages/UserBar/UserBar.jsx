@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useLogoutMutation } from 'redux/authServise';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthData } from 'redux/actions';
@@ -6,13 +6,19 @@ import { getName } from 'redux/selectors';
 import { toast } from 'react-hot-toast';
 
 export const UserBar = () => {
+  const history = useHistory();
   const [logoutUser] = useLogoutMutation();
   const dispatch = useDispatch();
   const name = useSelector(getName);
 
+  function postLogout() {
+    dispatch(setAuthData(''));
+    history.push({ pathname: '/' });
+  }
+
   function logoutHandler() {
     logoutUser()
-      .then(dispatch(setAuthData('')))
+      .then(postLogout)
       .catch(e => toast.error('что-то пошло не так'));
   }
 
