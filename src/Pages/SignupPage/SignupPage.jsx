@@ -5,6 +5,7 @@ import { useSignupMutation } from 'redux/authServise';
 import { FormItems } from 'Components/FormItems/FormItems';
 import { useHistory } from 'react-router-dom';
 import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
+import { signupSchema } from 'utils/validtionSchema';
 
 const formikOptions = [
   {
@@ -43,7 +44,7 @@ export const SignupPage = () => {
 
   return (
     <FormItems
-      // schema={null}
+      schema={signupSchema}
       onSubmit={submitHandler}
       initValues={{ name: '', email: '', password: '' }}
       inputTags={formikOptions}

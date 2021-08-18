@@ -37,27 +37,6 @@ export const FormItems = ({
               </label>
             );
           })}
-          {/* <label className={css.label} htmlFor="name">
-            Name
-          </label>
-          <Field
-            className={css.input}
-            id="name"
-            name="name"
-            placeholder="Enter name"
-          />
-          {touched.name && errors.name && onError(errors.name)} */}
-
-          {/* <label className={css.label} htmlFor="tel">
-            Phone
-          </label>
-          <Field
-            className={css.input}
-            id="tel"
-            name="tel"
-            placeholder="Enter phone number"
-          />
-          {touched.tel && errors.tel && onError(errors.tel)} */}
           {children}
         </Form>
       )}

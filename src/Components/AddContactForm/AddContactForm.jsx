@@ -7,7 +7,7 @@ import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
 //Utils
 import { toast } from 'react-hot-toast';
 import { hasName } from 'utils/hasName';
-import { schema } from 'utils/validtionSchema';
+import { contactSchema } from 'utils/validtionSchema';
 import {
   useAddContactMutation,
   useGetContactQuery,
@@ -52,7 +52,7 @@ const AddContactForm = () => {
     <>
       <h1 className={css.header}>Phonebook</h1>
       <FormItems
-        schema={schema}
+        schema={contactSchema}
         onSubmit={onSubmit}
         initValues={{ name: '', tel: '' }}
         inputTags={formikOptions}

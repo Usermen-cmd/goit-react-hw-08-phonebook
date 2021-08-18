@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { FormItems } from 'Components/FormItems/FormItems';
 import { toast } from 'react-hot-toast';
 import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
+import { loginSchema } from 'utils/validtionSchema';
 
 const formikOptions = [
   {
@@ -37,7 +38,7 @@ export const LoginPage = () => {
 
   return (
     <FormItems
-      // schema={schema}
+      schema={loginSchema}
       onSubmit={loginHandler}
       initValues={{ email: '', password: '' }}
       inputTags={formikOptions}

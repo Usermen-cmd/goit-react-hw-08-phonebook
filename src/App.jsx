@@ -1,9 +1,9 @@
-import Phonebook from 'Components/Phonebook/Phonebook';
+import Phonebook from 'Pages/PhonebookPage/Phonebook';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { HomePage } from 'Components/HomePage/HomePage';
-import { LoginPage } from 'Components/LoginPage/LoginPage';
-import { SignupPage } from 'Components/SignupPage/SignupPage';
-import { UserBar } from 'Components/UserBar/UserBar';
+import { HomePage } from 'Pages/HomePage/HomePage';
+import { LoginPage } from 'Pages/LoginPage/LoginPage';
+import { SignupPage } from 'Pages/SignupPage/SignupPage';
+import { UserBar } from 'Pages/UserBar/UserBar';
 import { Toaster } from 'react-hot-toast';
 
 const App = () => {
