@@ -6,24 +6,7 @@ import { FormItems } from 'Components/FormItems/FormItems';
 import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
 import { signupSchema } from 'utils/validtionSchema';
 import css from './SignupPage.module.css';
-
-const formikOptions = [
-  {
-    type: 'text',
-    label: 'Name',
-    id: 'name',
-  },
-  {
-    type: 'email',
-    label: 'Email',
-    id: 'email',
-  },
-  {
-    type: 'password',
-    label: 'Password',
-    id: 'password',
-  },
-];
+import { signupOptions } from 'utils/formikOptions';
 
 export const SignupPage = () => {
   const [signupUser, { isLoading }] = useSignupMutation();
@@ -47,7 +30,7 @@ export const SignupPage = () => {
         schema={signupSchema}
         onSubmit={submitHandler}
         initValues={{ name: '', email: '', password: '' }}
-        inputTags={formikOptions}
+        inputTags={signupOptions}
       >
         <SubmitButton isLoading={isLoading} label={'Signup'} />
       </FormItems>

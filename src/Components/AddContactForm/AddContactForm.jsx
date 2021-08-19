@@ -12,26 +12,13 @@ import {
   useAddContactMutation,
   useGetContactQuery,
 } from 'redux/contactApiServise';
-
-const formikOptions = [
-  {
-    type: 'text',
-    label: 'Name',
-    id: 'name',
-  },
-  {
-    type: 'tel',
-    label: 'Phone',
-    id: 'number',
-  },
-];
+import { contactFormOptions } from 'utils/formikOptions';
 
 const AddContactForm = () => {
   const { data } = useGetContactQuery();
   const [addContact, { isLoading }] = useAddContactMutation();
 
   function onSubmit(event, actions) {
-    console.log(event);
     if (hasName(event.name, data)) {
       toast.error('Такой контакт уже есть');
     } else {
@@ -55,7 +42,7 @@ const AddContactForm = () => {
         schema={contactSchema}
         onSubmit={onSubmit}
         initValues={{ name: '', number: '' }}
-        inputTags={formikOptions}
+        inputTags={contactFormOptions}
       >
         <SubmitButton label={'add'} isLoading={isLoading} width={'45px'} />
       </FormItems>

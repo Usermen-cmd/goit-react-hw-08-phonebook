@@ -6,19 +6,7 @@ import { toast } from 'react-hot-toast';
 import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
 import { loginSchema } from 'utils/validtionSchema';
 import css from './LoginPage.module.css';
-
-const formikOptions = [
-  {
-    type: 'email',
-    label: 'Email',
-    id: 'email',
-  },
-  {
-    type: 'password',
-    label: 'Password',
-    id: 'password',
-  },
-];
+import { loginFormOptions } from 'utils/formikOptions';
 
 export const LoginPage = () => {
   const [loginUser, { isLoading }] = useLoginMutation();
@@ -41,7 +29,7 @@ export const LoginPage = () => {
         schema={loginSchema}
         onSubmit={loginHandler}
         initValues={{ email: '', password: '' }}
-        inputTags={formikOptions}
+        inputTags={loginFormOptions}
       >
         <SubmitButton isLoading={isLoading} label={'Login'} />
       </FormItems>
