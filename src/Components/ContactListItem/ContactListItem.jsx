@@ -9,12 +9,9 @@ import Loader from 'react-loader-spinner';
 import { useDeleteContactMutation } from 'redux/contactApiServise';
 import toast from 'react-hot-toast';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { isOpen } from 'redux/actions';
 
-export const ContactListItem = ({ contact }) => {
+export const ContactListItem = ({ contact, editButtonHandler }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
-  const dispatch = useDispatch();
 
   const hangleContactDelete = id => () => {
     return deleteContact(id)
@@ -28,15 +25,15 @@ export const ContactListItem = ({ contact }) => {
       );
   };
 
-  const editButtonHandler = () => {
-    dispatch(isOpen());
-  };
-
   return (
     <li className={css.listItem}>
       <span>{contact.name}</span>
       <span>{contact.number}</span>
-      <button type="button" className={css.button} onClick={editButtonHandler}>
+      <button
+        type="button"
+        className={css.button}
+        onClick={editButtonHandler(contact)}
+      >
         edit <GoPencil size="16" />
       </button>
       <button
