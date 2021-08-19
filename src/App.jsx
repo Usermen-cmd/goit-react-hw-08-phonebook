@@ -1,5 +1,5 @@
 import Phonebook from 'Pages/PhonebookPage/Phonebook';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 import { HomePage } from 'Pages/HomePage/HomePage';
 import { LoginPage } from 'Pages/LoginPage/LoginPage';
 import { SignupPage } from 'Pages/SignupPage/SignupPage';
@@ -12,9 +12,9 @@ const App = () => {
     <>
       <UserBar />
       <Switch>
-        <Route exact path="/">
+        <Routes.Public exact path="/">
           <HomePage />
-        </Route>
+        </Routes.Public>
         <Routes.Private path="/contacts">
           <Phonebook />
         </Routes.Private>
