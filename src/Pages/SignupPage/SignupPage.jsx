@@ -1,9 +1,8 @@
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { setAuthData } from 'redux/actions';
+import { isLogin, setToken } from 'redux/actions';
 import { useSignupMutation } from 'redux/authServise';
 import { FormItems } from 'Components/FormItems/FormItems';
-import { useHistory } from 'react-router-dom';
 import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
 import { signupSchema } from 'utils/validtionSchema';
 import css from './SignupPage.module.css';
@@ -29,11 +28,10 @@ const formikOptions = [
 export const SignupPage = () => {
   const [signupUser, { isLoading }] = useSignupMutation();
   const dispatch = useDispatch();
-  const history = useHistory();
 
   function postSubmit({ data }) {
-    dispatch(setAuthData(data));
-    history.push({ pathname: '/' });
+    dispatch(setToken(data.token));
+    dispatch(isLogin(true));
   }
 
   function submitHandler(event, actions) {

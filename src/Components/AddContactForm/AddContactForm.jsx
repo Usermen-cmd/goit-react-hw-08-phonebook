@@ -22,7 +22,7 @@ const formikOptions = [
   {
     type: 'tel',
     label: 'Phone',
-    id: 'tel',
+    id: 'number',
   },
 ];
 
@@ -31,6 +31,7 @@ const AddContactForm = () => {
   const [addContact, { isLoading }] = useAddContactMutation();
 
   function onSubmit(event, actions) {
+    console.log(event);
     if (hasName(event.name, data)) {
       toast.error('Такой контакт уже есть');
     } else {
@@ -45,7 +46,6 @@ const AddContactForm = () => {
         );
     }
     actions.resetForm();
-    return;
   }
 
   return (
@@ -54,7 +54,7 @@ const AddContactForm = () => {
       <FormItems
         schema={contactSchema}
         onSubmit={onSubmit}
-        initValues={{ name: '', tel: '' }}
+        initValues={{ name: '', number: '' }}
         inputTags={formikOptions}
       >
         <SubmitButton label={'add'} isLoading={isLoading} width={'45px'} />

@@ -5,6 +5,7 @@ import { LoginPage } from 'Pages/LoginPage/LoginPage';
 import { SignupPage } from 'Pages/SignupPage/SignupPage';
 import { UserBar } from 'Pages/UserBar/UserBar';
 import { Toaster } from 'react-hot-toast';
+import * as Routes from 'Routes/Routes';
 
 const App = () => {
   return (
@@ -14,15 +15,15 @@ const App = () => {
         <Route exact path="/">
           <HomePage />
         </Route>
-        <Route path="/contacts">
+        <Routes.Private path="/contacts">
           <Phonebook />
-        </Route>
-        <Route path="/login">
+        </Routes.Private>
+        <Routes.Public path="/login" restricted>
           <LoginPage />
-        </Route>
-        <Route path="/signup">
+        </Routes.Public>
+        <Routes.Public path="/signup" restricted>
           <SignupPage />
-        </Route>
+        </Routes.Public>
 
         <Redirect to="/" />
       </Switch>

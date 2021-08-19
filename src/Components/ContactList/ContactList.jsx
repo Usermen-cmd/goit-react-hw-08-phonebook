@@ -3,6 +3,7 @@ import css from './ContactList.module.css';
 //Components
 import { LinearProgress } from '@material-ui/core';
 import { ContactListItem } from 'Components/ContactListItem/ContactListItem';
+import { EditModal } from 'Components/EditModal/EditModal';
 //Utils
 import { useEffect } from 'react';
 import { getFiltredContacts } from 'utils/getFiltredContacts';
@@ -15,6 +16,7 @@ const ContactList = () => {
   const { data, isFetching, error } = useGetContactQuery();
   const filterValue = useSelector(getFilterValue);
   const fitredContacts = getFiltredContacts(data, filterValue);
+  const isOpenModal = useSelector(s => s.isOpenModal);
 
   useEffect(() => {
     error &&
@@ -30,6 +32,7 @@ const ContactList = () => {
           return <ContactListItem contact={contact} key={contact.id} />;
         })}
       </ul>
+      {isOpenModal && <EditModal />}
     </>
   );
 };

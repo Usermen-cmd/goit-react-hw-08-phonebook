@@ -1,9 +1,12 @@
 .listItem {
   display: grid;
-  grid-template-columns: 3fr 3fr 1fr;
+  grid-template-columns: 3fr 3fr 1fr 1fr;
+  gap: 5px;
+  align-items: center;
   margin-bottom: 8px;
   color: var(--secondary);
 }
+
 .button {
   composes: button from 'composesStyles/composes.css';
   display: flex;

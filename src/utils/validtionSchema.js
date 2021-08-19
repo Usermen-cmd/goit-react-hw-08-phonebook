@@ -3,7 +3,7 @@ import 'yup-phone';
 
 export const contactSchema = Yup.object().shape({
   name: Yup.string().min(2).max(20).required(),
-  tel: Yup.string().phone('', false).required(),
+  number: Yup.string().phone('', false).required(),
 });
 
 export const loginSchema = Yup.object().shape({

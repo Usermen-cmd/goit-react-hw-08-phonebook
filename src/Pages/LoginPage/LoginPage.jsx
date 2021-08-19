@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useLoginMutation } from 'redux/authServise';
-import { setAuthData } from 'redux/actions';
-import { useHistory } from 'react-router-dom';
+import { isLogin, setToken } from 'redux/actions';
 import { FormItems } from 'Components/FormItems/FormItems';
 import { toast } from 'react-hot-toast';
 import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
@@ -24,11 +23,10 @@ const formikOptions = [
 export const LoginPage = () => {
   const [loginUser, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
-  const history = useHistory();
 
   function postLogin({ data }) {
-    dispatch(setAuthData(data));
-    history.push({ pathname: '/' });
+    dispatch(setToken(data.token));
+    dispatch(isLogin(true));
   }
 
   function loginHandler(event) {

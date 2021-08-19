@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { contactApi } from 'redux/contactApiServise';
 import { authApi } from './authServise';
-import { filter, authData } from 'redux/redusers';
+import { filter, token, isOpenModal, isLoggetIn } from 'redux/redusers';
 import { combineReducers } from '@reduxjs/toolkit';
 import {
   persistStore,
@@ -18,12 +18,14 @@ import storage from 'redux-persist/lib/storage';
 const authPersistConfig = {
   key: 'authData',
   storage,
-  whitelist: ['authData'],
+  whitelist: ['token', 'isLoggetIn'],
 };
 
 const rootReducer = combineReducers({
+  isLoggetIn,
+  isOpenModal,
   filter,
-  authData,
+  token,
   [contactApi.reducerPath]: contactApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
 });

@@ -1,20 +1,19 @@
-import { NavLink, useHistory } from 'react-router-dom';
-import { useLogoutMutation } from 'redux/authServise';
+import { NavLink } from 'react-router-dom';
+import { useCurrentQuery, useLogoutMutation } from 'redux/authServise';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAuthData } from 'redux/actions';
-import { getName } from 'redux/selectors';
+import { setToken, isLogin } from 'redux/actions';
 import { toast } from 'react-hot-toast';
 import css from './UserBar.module.css';
 
 export const UserBar = () => {
-  const history = useHistory();
   const [logoutUser] = useLogoutMutation();
   const dispatch = useDispatch();
-  const name = useSelector(getName);
+  const isLoggetIn = useSelector(s => s.isLoggetIn);
+  const { data } = useCurrentQuery();
 
   function postLogout() {
-    dispatch(setAuthData(''));
-    history.push({ pathname: '/' });
+    dispatch(setToken(''));
+    dispatch(isLogin(false));
   }
 
   function logoutHandler() {
@@ -26,7 +25,7 @@ export const UserBar = () => {
   return (
     <>
       <div className={css.bar}>
-        {!name && (
+        {!isLoggetIn && (
           <>
             <NavLink to="/signup" className={css.link}>
               Signup
@@ -39,14 +38,14 @@ export const UserBar = () => {
         <NavLink to="/" className={css.link}>
           Home
         </NavLink>
-        {name && (
+        {isLoggetIn && (
           <NavLink to="/contacts" className={css.link}>
             Contacts
           </NavLink>
         )}
-        {name && (
+        {isLoggetIn && (
           <>
-            <p className={css.userName}>Hello, {name}</p>
+            <p className={css.userName}>Hello, {data?.name}</p>
             <button
               type="button"
               onClick={logoutHandler}
