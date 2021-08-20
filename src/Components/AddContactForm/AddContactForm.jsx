@@ -13,10 +13,17 @@ import {
   useGetContactQuery,
 } from 'redux/contactApiServise';
 import { contactFormOptions } from 'utils/formikOptions';
+import { useCurrentQuery } from 'redux/authServise';
+import { useEffect } from 'react';
 
 const AddContactForm = () => {
   const { data } = useGetContactQuery();
+  const { refetch } = useCurrentQuery();
   const [addContact, { isLoading }] = useAddContactMutation();
+
+  useEffect(() => {
+    refetch();
+  }, [data, refetch]);
 
   function onSubmit(event, actions) {
     if (hasName(event.name, data)) {

@@ -11,9 +11,9 @@ export const authApi = createApi({
       }
       return headers;
     },
-    providesTags: ['auth'],
   }),
-  tagTypes: ['auth'],
+  tagTypes: ['auth', 'current'],
+  keepUnusedDataFor: 0,
   endpoints: builder => ({
     signup: builder.mutation({
       query: body => ({
@@ -40,7 +40,7 @@ export const authApi = createApi({
     }),
     current: builder.query({
       query: () => 'users/current',
-      providesTags: ['auth'],
+      invalidatesTags: ['current'],
     }),
   }),
 });

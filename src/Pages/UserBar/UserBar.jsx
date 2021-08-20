@@ -11,6 +11,8 @@ export const UserBar = () => {
   const isLoggetIn = useSelector(s => s.isLoggetIn);
   const { data } = useCurrentQuery();
 
+  console.log(data);
+
   function postLogout() {
     dispatch(setToken(''));
     dispatch(isLogin(false));

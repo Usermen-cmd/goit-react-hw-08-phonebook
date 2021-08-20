@@ -11,6 +11,8 @@ export const Public = ({ children, restricted = false, ...props }) => {
   const isRedirect = restricted && isLogin;
 
   return (
-    <Route {...props}>{isRedirect ? <Redirect to="/" /> : children}</Route>
+    <Route {...props}>
+      {isRedirect ? <Redirect to="/contacts" /> : children}
+    </Route>
   );
 };
