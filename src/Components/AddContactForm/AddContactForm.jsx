@@ -5,16 +5,17 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { FormItems } from 'Components/FormItems/FormItems';
 import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
 //Utils
-import { toast } from 'react-hot-toast';
-import { hasName } from 'utils/hasName';
 import { contactSchema } from 'utils/validtionSchema';
+import { hasName } from 'utils/hasName';
+import { contactFormOptions } from 'utils/formikOptions';
+import { toast } from 'react-hot-toast';
+import { useEffect } from 'react';
+//Fetch servises
 import {
   useAddContactMutation,
   useGetContactQuery,
 } from 'redux/contactApiServise';
-import { contactFormOptions } from 'utils/formikOptions';
 import { useCurrentQuery } from 'redux/authServise';
-import { useEffect } from 'react';
 
 const AddContactForm = () => {
   const { data } = useGetContactQuery();
@@ -22,7 +23,7 @@ const AddContactForm = () => {
   const [addContact, { isLoading }] = useAddContactMutation();
 
   useEffect(() => {
-    refetch();
+    refetch(); //re-fetch user name of userBar component
   }, [data, refetch]);
 
   function onSubmit(event, actions) {

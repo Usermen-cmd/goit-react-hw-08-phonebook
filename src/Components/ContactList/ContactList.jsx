@@ -5,13 +5,17 @@ import { LinearProgress } from '@material-ui/core';
 import { ContactListItem } from 'Components/ContactListItem/ContactListItem';
 import { EditModal } from 'Components/EditModal/EditModal';
 //Utils
-import { useEffect, useState } from 'react';
 import { getFiltredContacts } from 'utils/getFiltredContacts';
-import { useSelector } from 'react-redux';
-import { useGetContactQuery } from 'redux/contactApiServise';
 import toast from 'react-hot-toast';
+//hooks
+import { useEffect, useState } from 'react';
+//Selectors
 import { getFilterValue } from 'redux/selectors';
+//fetch servises
+import { useGetContactQuery } from 'redux/contactApiServise';
+//redux
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { isOpen } from 'redux/actions';
 
 const ContactList = () => {
@@ -25,7 +29,7 @@ const ContactList = () => {
   useEffect(() => {
     error &&
       toast.error(`Возникла ошибка ${error.status}, сообщение ${error.data}`);
-  }, [error]);
+  }, [error]); //errors of fetch
 
   const editButtonHandler = contact => () => {
     dispatch(isOpen());

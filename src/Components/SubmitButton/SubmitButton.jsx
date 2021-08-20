@@ -1,5 +1,9 @@
+//components
 import Loader from 'react-loader-spinner';
+//styles
 import css from './SubmitButton.module.css';
+//utils
+import PropTypes from 'prop-types';
 
 export const SubmitButton = ({ isLoading, label, width = '70px' }) => {
   return (
@@ -24,4 +28,9 @@ export const SubmitButton = ({ isLoading, label, width = '70px' }) => {
       )}
     </button>
   );
+};
+
+SubmitButton.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  label: PropTypes.string.isRequired,
 };

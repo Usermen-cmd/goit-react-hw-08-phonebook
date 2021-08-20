@@ -1,5 +1,10 @@
+//components
 import { Route, Redirect } from 'react-router';
+//selectors
+import { isLoginUser } from 'redux/selectors';
 import { useSelector } from 'react-redux';
+//utils
+import PropTypes from 'prop-types';
 
 export const Private = ({ children, ...props }) => {
   const isLogin = useSelector(s => s.isLoggetIn);
@@ -7,7 +12,7 @@ export const Private = ({ children, ...props }) => {
 };
 
 export const Public = ({ children, restricted = false, ...props }) => {
-  const isLogin = useSelector(s => s.isLoggetIn);
+  const isLogin = useSelector(isLoginUser);
   const isRedirect = restricted && isLogin;
 
   return (
@@ -15,4 +20,15 @@ export const Public = ({ children, restricted = false, ...props }) => {
       {isRedirect ? <Redirect to="/contacts" /> : children}
     </Route>
   );
+};
+
+Private.propTypes = {
+  children: PropTypes.element.isRequired,
+  props: PropTypes.objectOf(PropTypes.object),
+};
+
+Public.propTypes = {
+  children: PropTypes.element.isRequired,
+  props: PropTypes.objectOf(PropTypes.object),
+  restricted: PropTypes.bool,
 };

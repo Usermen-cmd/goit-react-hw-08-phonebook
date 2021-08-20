@@ -1,9 +1,14 @@
+//Components
 import { NavLink } from 'react-router-dom';
+//redux
 import { useSelector } from 'react-redux';
+//styles
 import css from './HomePage.module.css';
+//selectors
+import { isLoginUser } from 'redux/selectors';
 
-export const HomePage = () => {
-  const isLogin = useSelector(s => s.isLoggetIn);
+const HomePage = () => {
+  const isLogin = useSelector(isLoginUser);
   return (
     <div className={css.container}>
       <h1 className={css.header}>Книга контактов</h1>
@@ -13,3 +18,5 @@ export const HomePage = () => {
     </div>
   );
 };
+
+export default HomePage;

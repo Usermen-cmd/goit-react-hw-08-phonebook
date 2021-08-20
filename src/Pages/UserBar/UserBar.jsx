@@ -1,17 +1,22 @@
+//components
 import { NavLink } from 'react-router-dom';
+//stules
+import css from './UserBar.module.css';
+//fetch servises
 import { useCurrentQuery, useLogoutMutation } from 'redux/authServise';
+//redux
 import { useDispatch, useSelector } from 'react-redux';
 import { setToken, isLogin } from 'redux/actions';
+//utils
 import { toast } from 'react-hot-toast';
-import css from './UserBar.module.css';
+//selectors
+import { isLoginUser } from 'redux/selectors';
 
 export const UserBar = () => {
   const [logoutUser] = useLogoutMutation();
   const dispatch = useDispatch();
-  const isLoggetIn = useSelector(s => s.isLoggetIn);
+  const isLoggetIn = useSelector(isLoginUser);
   const { data } = useCurrentQuery();
-
-  console.log(data);
 
   function postLogout() {
     dispatch(setToken(''));

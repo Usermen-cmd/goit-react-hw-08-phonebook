@@ -1,2 +1,2 @@
 export const getFilterValue = state => state.filter;
-export const getName = state => state.authData?.user?.name;
+export const isLoginUser = state => state.isLoggetIn;

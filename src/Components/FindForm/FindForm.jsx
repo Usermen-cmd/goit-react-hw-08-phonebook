@@ -3,6 +3,7 @@ import css from './FindForm.module.css';
 //Utils
 import { changeFilter } from 'redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
+//selectors
 import { getFilterValue } from 'redux/selectors';
 
 const FindForm = () => {

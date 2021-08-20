@@ -6,9 +6,10 @@ import { GoTrashcan } from 'react-icons/go';
 import { GoPencil } from 'react-icons/go';
 import Loader from 'react-loader-spinner';
 //Utils
-import { useDeleteContactMutation } from 'redux/contactApiServise';
 import toast from 'react-hot-toast';
 import PropTypes from 'prop-types';
+//fetch servise
+import { useDeleteContactMutation } from 'redux/contactApiServise';
 
 export const ContactListItem = ({ contact, editButtonHandler }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
@@ -60,4 +61,5 @@ ContactListItem.propTypes = {
     number: PropTypes.string.isRequired,
     id: PropTypes.isRequired,
   }),
+  editButtonHandler: PropTypes.func.isRequired,
 };

@@ -1,19 +1,24 @@
+//styles
+import css from './SignupPage.module.css';
+//components
+import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
+import { FormItems } from 'Components/FormItems/FormItems';
+//ustils
 import toast from 'react-hot-toast';
+import { signupSchema } from 'utils/validtionSchema';
+import { signupOptions } from 'utils/formikOptions';
+//redux
 import { useDispatch } from 'react-redux';
 import { isLogin, setToken } from 'redux/actions';
+//fetch servises
 import { useSignupMutation } from 'redux/authServise';
-import { FormItems } from 'Components/FormItems/FormItems';
-import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
-import { signupSchema } from 'utils/validtionSchema';
-import css from './SignupPage.module.css';
-import { signupOptions } from 'utils/formikOptions';
 
-export const SignupPage = () => {
+const SignupPage = () => {
   const [signupUser, { isLoading }] = useSignupMutation();
   const dispatch = useDispatch();
 
   function postSubmit({ data }) {
-    dispatch(setToken(data.token));
+    dispatch(setToken(data.token)); //set token in local storage
     dispatch(isLogin(true));
   }
 
@@ -37,3 +42,5 @@ export const SignupPage = () => {
     </div>
   );
 };
+
+export default SignupPage;

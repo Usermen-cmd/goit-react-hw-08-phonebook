@@ -10,9 +10,9 @@ export const token = createReducer('', {
 });
 
 export const isOpenModal = createReducer(false, {
-  [isOpen]: (state, action) => !state,
+  [isOpen]: (state, _) => !state,
 });
 
 export const isLoggetIn = createReducer(false, {
-  [isLogin]: (state, action) => action.payload,
+  [isLogin]: (_, action) => action.payload,
 });

@@ -1,14 +1,19 @@
-import { useDispatch } from 'react-redux';
-import { useLoginMutation } from 'redux/authServise';
-import { isLogin, setToken } from 'redux/actions';
+//components
 import { FormItems } from 'Components/FormItems/FormItems';
-import { toast } from 'react-hot-toast';
 import { SubmitButton } from 'Components/SubmitButton/SubmitButton';
-import { loginSchema } from 'utils/validtionSchema';
+//stules
 import css from './LoginPage.module.css';
+//fetch servises
+import { useLoginMutation } from 'redux/authServise';
+//redux
+import { useDispatch } from 'react-redux';
+import { isLogin, setToken } from 'redux/actions';
+//utils
+import { toast } from 'react-hot-toast';
+import { loginSchema } from 'utils/validtionSchema';
 import { loginFormOptions } from 'utils/formikOptions';
 
-export const LoginPage = () => {
+const LoginPage = () => {
   const [loginUser, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
 
@@ -36,3 +41,5 @@ export const LoginPage = () => {
     </div>
   );
 };
+
+export default LoginPage;

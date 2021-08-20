@@ -1,6 +1,10 @@
+//Components
 import { Formik, Form, Field } from 'formik';
+//utils
 import { debounce } from 'throttle-debounce';
 import { toast } from 'react-hot-toast';
+import PropTypes from 'prop-types';
+//styles
 import css from './FormItems.module.css';
 
 export const FormItems = ({
@@ -42,4 +46,12 @@ export const FormItems = ({
       )}
     </Formik>
   );
+};
+
+FormItems.propTypes = {
+  schema: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
+  initValues: PropTypes.objectOf(PropTypes.string.isRequired),
+  inputTags: PropTypes.arrayOf(PropTypes.object.isRequired),
 };
